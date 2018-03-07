@@ -1,5 +1,39 @@
 REM platformfix855.sql
 REM updated for PeopleTools 8.55 - informix and sybase have gone
+REM See http://blog.psftdba.com/2018/03/fewer-platform-flags-on-indexes-from.html
+
+column RECNAME format a15
+column INDEXID format a3 heading 'Idx|ID'
+column DDLCOUNT format 999 heading 'DDL|Cnt'
+column CUSTKEYORDER format 9999 heading 'Cust|Key|Order'
+column KEYCOUNT format 999 heading 'Key|Cnt'
+column PLATFORM_SBS format 999 heading 'SBS'
+column PLATFORM_DB2 format 999 heading 'DB2'
+column PLATFORM_ORA format 999 heading 'ORA'
+column PLATFORM_INF format 999 heading 'INF'
+column PLATFORM_DBX format 999 heading 'DBx'
+column PLATFORM_ALB format 999 heading 'ALB'
+column PLATFORM_SYB format 999 heading 'SYB'
+column PLATFORM_MSS format 999 heading 'MSS'
+column PLATFORM_DB4 format 999 heading 'DB4'
+column ACTIVEFLAG Format 999 heading 'Active'
+column CLUSTERFLAG format 999 heading 'Clst|Flg'
+column UNIQUEFLAG format 999 heading 'Uniq|Flg'
+column INDEXTYPE format 999 heading 'Idx|Type'
+column IDXCOMMENTS format a60
+
+spool platformfix855
+SELECT *
+FROM PSINDEXDEFN
+WHERE PLATFORM_DB2=PLATFORM_DBX
+AND PLATFORM_DBX=PLATFORM_ORA
+AND PLATFORM_ORA=PLATFORM_MSS
+AND (PLATFORM_ORA!=PLATFORM_SBS
+  OR PLATFORM_ORA!=PLATFORM_ALB
+  OR PLATFORM_ORA!=PLATFORM_SYB
+  OR PLATFORM_ORA!=PLATFORM_INF
+  OR PLATFORM_ORA!=PLATFORM_DB4)
+;
 
 UPDATE PSVERSION
 SET VERSION = VERSION + 1
@@ -62,5 +96,5 @@ AND PLATFORM_DBX=PLATFORM_ORA
 AND PLATFORM_ORA=PLATFORM_MSS
 AND PLATFORM_ORA!=PLATFORM_SYB;
 
-COMMIT;
+REM commit or rollback
 spool off
