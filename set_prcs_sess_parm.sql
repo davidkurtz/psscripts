@@ -35,10 +35,12 @@ from x,y
 
 commit;
 
+set line 200 trimspool on
 column prcstype   format a20
 column oprid      format a10
-column param_name format a30
 column runcntlid  format a24
+column keyword    format a8
+column param_name format a30
 column parmvalue  format a20
 select * from sysadm.PS_PRCS_SESS_PARM order by 1,2,3,4,5;
 
