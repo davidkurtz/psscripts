@@ -66,8 +66,11 @@ CREATE TABLE "SYSADM"."PS_GPNZ_LIAB_W6"
   PCTINCREASE 0)
   TABLESPACE "GPAPP"
   /
-select * from user_jobs
-/
+select * from user_scheduler_jobs;
+--select * from user_jobs;
+
+select * from user_scheduler_job_log order by log_date;
+
 
 set serveroutput on 
 --exec sysadm.gfc_locktemprecstats('SYSADM','PS_GPNZ_LIAB_W6');

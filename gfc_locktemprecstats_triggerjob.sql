@@ -54,7 +54,7 @@ DECLARE
   l_cmd            VARCHAR2(1000 CHAR);
   l_job_no         NUMBER;
 BEGIN
-  dbms_output.put_line('Trigger fired on creation of '||dictionary_obj_type||':'||dictionary_obj_owner||'.'||dictionary_obj_name);
+--dbms_output.put_line('Trigger fired on creation of '||dictionary_obj_type||':'||dictionary_obj_owner||'.'||dictionary_obj_name);
   IF DICTIONARY_OBJ_TYPE = 'TABLE' THEN
     l_cmd := 'gfc_locktemprecstats(p_table_name=>'''||dictionary_obj_name||''');';
     dbms_job.submit(l_job_no,l_cmd);
