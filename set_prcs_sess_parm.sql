@@ -23,6 +23,7 @@ union all select 'parallel_degree_policy' , 'auto' from dual
 union all select 'parallel_degree_level', '200' from dual 
 union all select 'parallel_min_time_threshold', '1' from dual
 union all select 'query_rewrite_enabled', 'FORCE' from dual 
+union all select 'ddl_lock_timeout', '30' from dual 
 ), y as (
 select  prcstype, prcsname
 from	ps_prcsdefn
@@ -58,19 +59,22 @@ update sysadm.psprcsrqst
 set runstatus = 7
 where runstatus != 7
 and prcsname = 'RPTBOOK'
-and runcntlid = 'NVS_RPTBOOK_2'
-and oprid = 'NVISION'
+--and runcntlid = 'NVS_RPTBOOK_2'
+--and oprid = 'NVISION'
 and rownum = 1;
-rollback;
 update sysadm.psprcsrqst
 set runstatus = 7
 where runstatus != 7
-and prcsname = 'RPTBOOK'
-and runcntlid = 'NVS_RPTBOOK_1'
-and oprid = 'NVISION'
+and prcsname = 'NVSRUN'
+--and runcntlid = 'NVS_RPTBOOK_1'
+00and oprid = 'NVISION'
 and rownum = 1;
 rollback;
 
-alter session set current_schema=SYSADM;
+show parameters optimizer
+show parameters parallel
+show parameters rewrite
+show parameters ddl
+
 spool off
 
