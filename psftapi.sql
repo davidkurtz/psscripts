@@ -1,7 +1,8 @@
 REM psftapi.sql
-REM (c)David Kurtz 2009-16
+REM (c)David Kurtz 2009-21
 REM 26.11.2013 - comment out trigger prcsrqststrng_action from script
-REM 17.3.2016 no longer dropping legacy trigger name
+REM 17.03.2016 no longer dropping legacy trigger name
+REM 29.04.2021 do not update module/action if PSAE instrumentation enabled to permit resource manager set_consumer_group_mapping to work effectively
 
 set echo on serveroutput on buffer 1000000000 
 ---------------------------------------------------------------------------------------------------------
@@ -29,7 +30,7 @@ FUNCTION get_prcsinstance RETURN INTEGER;
 FUNCTION get_prcsname     RETURN VARCHAR2;
 
 ---------------------------------------------------------------------------------------
---Writes a message to the PeopleSoft message log using delivered generic message (65,30)
+--Writes a message to the PeopleSoft message log using dlivered generic message (65,30)
 ---------------------------------------------------------------------------------------
 PROCEDURE message_log
 (p_message  VARCHAR2
@@ -290,7 +291,9 @@ pause
 --Trigger psftapi_store_prcsinstance saves the current process instance to a global variable in 
 --the psftapi procedure
 ---------------------------------------------------------------------------------------
---17.3.2016 no longer dropping legacy trigger name
+--29.04.2021 do not update module/action if PSAE instrumentation enabled to 
+--           permit resource manager set_consumer_group_mapping to work effectively
+--17.03.2016 no longer dropping legacy trigger name
 --This trigger replaces gfc_mod_act which has been withdrawn
 --DROP TRIGGER sysadm.gfc_mod_act;
 ---------------------------------------------------------------------------------------
@@ -298,10 +301,18 @@ CREATE OR REPLACE TRIGGER sysadm.psftapi_store_prcsinstance
 BEFORE UPDATE OF runstatus ON sysadm.psprcsrqst
 FOR EACH ROW
 WHEN ((new.runstatus IN('3','7','8','9','10') OR old.runstatus IN('7','8')) AND new.prcstype != 'PSJob')
+DECLARE
+ l_module v$session.module%type;
+ l_action v$session.action%type;
 BEGIN
+ dbms_application_info.read_module(module_name=>l_module, action_name=>l_action);
  IF :new.runstatus = '7' THEN
   psftapi.set_prcsinstance(p_prcsinstance => :new.prcsinstance
                           ,p_prcsname     => :new.prcsname);
+ END IF;
+ IF :new.prcstype = 'Application Engine' AND l_module LIKE 'PSAE.%.%' THEN
+  NULL; --do not update module if PSAE instrumentation enabled
+ ELSIF :new.runstatus = '7' THEN
   psftapi.set_action(p_prcsinstance=>:new.prcsinstance
                     ,p_runstatus=>:new.runstatus
                     ,p_prcsname=>:new.prcsname);
