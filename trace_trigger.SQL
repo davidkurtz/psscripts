@@ -90,7 +90,7 @@ SET    runstatus = 7
 WHERE  runstatus != 7
 AND    new.prcstype != 'PSJob'
 AND    new.prcstype = 'Application Engine' 
-AND	   new.runcntlid = 'TRACE'
+AND	   new.runcntlid LIKE 'TRACE%'
 AND    rownum = 1
 --AND 1=2
 ;
