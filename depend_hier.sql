@@ -28,7 +28,7 @@ from dba_dependencies d
   connect by nocycle
         d.name = prior d.referenced_name
   and   d.owner = prior d.referenced_owner
-start with d.owner = 'PSOFT' and d.name = UPPER('&&object_name')
+start with d.owner = 'SYSADM' and d.name = UPPER('&&object_name')
 /
 spool off
 ttitle off
