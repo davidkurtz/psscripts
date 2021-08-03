@@ -13,13 +13,13 @@ column num_plans   heading 'Num|Plans'   format 999,999
 column num_actions heading 'Num|Actions' format 999,999
 spool index_usage.&&object_name..lst
 with o as (
-select  DISTINCT object_owner, object_type, object_name
+select  /*+MATERIALIZE*/ DISTINCT object_owner, object_type, object_name
 from    dba_hist_sql_plan
 where   object_name like UPPER('&&object_name')
 and     object_owner = 'SYSADM'
-and     object_type like 'INDEX'
+and     object_type like 'INDEX%'
 ), p as (
-select  DISTINCT o.object_owner, o.object_type, o.object_name, p.plan_hash_value, p.options, p.id
+select  /*+MATERIALIZE*/ DISTINCT o.object_owner, o.object_type, o.object_name, p.plan_hash_value, p.options, p.id
 from    o, dba_hist_sql_plan p
 where   o.object_name = p.object_name
 and     o.object_owner = p.objecT_owner
@@ -40,8 +40,6 @@ and     x.snap_id = h.snap_id
 and     i.dbid = x.dbid
 and     i.instance_number = x.instance_number
 and     i.startup_time = x.startup_time
---and     i.db_name = 'QENGL010'
---and     x.begin_interval_time >= SYSDATE-7
 and     not h.module IN('DBMS_SCHEDULER','SQL*Plus')
 ), x as (
 select 	p.object_name, p.options, h.module, sum(ash_secs) ash_Secs
