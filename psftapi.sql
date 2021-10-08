@@ -3,7 +3,7 @@ REM (c)David Kurtz 2009-21
 REM 26.11.2013 - comment out trigger prcsrqststrng_action from script
 REM 17.03.2016 no longer dropping legacy trigger name
 REM 29.04.2021 do not update module/action if PSAE instrumentation enabled to permit resource manager set_consumer_group_mapping to work effectively
-
+@@psownerid
 set echo on serveroutput on buffer 1000000000 
 ---------------------------------------------------------------------------------------------------------
 --This package contains provides an API to insert a message into the message log.  It is owned by the 
@@ -11,7 +11,7 @@ set echo on serveroutput on buffer 1000000000
 --necessary to grant execute privilege on the package to other schemas (such as obishare) for it to be 
 --usable.
 ---------------------------------------------------------------------------------------------------------
-CREATE OR REPLACE PACKAGE sysadm.psftapi AS 
+CREATE OR REPLACE PACKAGE &&ownerid..psftapi AS 
 
 ---------------------------------------------------------------------------------------
 --Write process instance number into a global PL/SQL variable to be used later
@@ -75,7 +75,7 @@ show errors
 ---------------------------------------------------------------------------------------
 --Package Body
 ---------------------------------------------------------------------------------------
-CREATE OR REPLACE PACKAGE BODY sysadm.psftapi AS 
+CREATE OR REPLACE PACKAGE BODY &&ownerid..psftapi AS 
 
 --variables that are global to package only stored between calls within session
 g_prcsinstance INTEGER;          --peoplesoft process instance number
@@ -295,10 +295,10 @@ pause
 --           permit resource manager set_consumer_group_mapping to work effectively
 --17.03.2016 no longer dropping legacy trigger name
 --This trigger replaces gfc_mod_act which has been withdrawn
---DROP TRIGGER sysadm.gfc_mod_act;
+--DROP TRIGGER &&ownerid..gfc_mod_act;
 ---------------------------------------------------------------------------------------
-CREATE OR REPLACE TRIGGER sysadm.psftapi_store_prcsinstance
-BEFORE UPDATE OF runstatus ON sysadm.psprcsrqst
+CREATE OR REPLACE TRIGGER &&ownerid..psftapi_store_prcsinstance
+BEFORE UPDATE OF runstatus ON &&ownerid..psprcsrqst
 FOR EACH ROW
 WHEN ((new.runstatus IN('3','7','8','9','10') OR old.runstatus IN('7','8')) AND new.prcstype != 'PSJob')
 DECLARE
@@ -330,10 +330,10 @@ pause
 --Trigger to set action from psprcsrqststrng
 ---------------------------------------------------------------------------------------
 --17.3.2016 no longer dropping legacy trigger name
---DROP TRIGGER sysadm.prcsrqststrng_action;
+--DROP TRIGGER &&ownerid..prcsrqststrng_action;
 
---CREATE OR REPLACE TRIGGER sysadm.gfc_prcsrqststrng_action
---BEFORE INSERT OR UPDATE OF prcsrqststring ON sysadm.psprcsrqststrng
+--CREATE OR REPLACE TRIGGER &&ownerid..gfc_prcsrqststrng_action
+--BEFORE INSERT OR UPDATE OF prcsrqststring ON &&ownerid..psprcsrqststrng
 --FOR EACH ROW
 --BEGIN
 -- IF psftapi.get_prcsinstance() = :new.prcsinstance THEN
@@ -351,8 +351,8 @@ pause
 --Trigger to set current EMPLID during payroll calculation
 --Will only build on HCM database.  Will error elsewhere, in which ignore error
 ---------------------------------------------------------------------------------------
-CREATE OR REPLACE TRIGGER sysadm.gfc_payroll_calc_action
-BEFORE INSERT OR UPDATE OF gp_calc_ts ON sysadm.ps_gp_pye_seg_Stat
+CREATE OR REPLACE TRIGGER &&ownerid..gfc_payroll_calc_action
+BEFORE INSERT OR UPDATE OF gp_calc_ts ON &&ownerid..ps_gp_pye_seg_Stat
 FOR EACH ROW
 WHEN (new.gp_calc_ts IS NOT NULL)
 DECLARE
@@ -462,7 +462,7 @@ from user_triggers
 where table_name = 'PSPRCSRQST'
 /
 
-UPDATE  sysadm.psprcsrqst new
+UPDATE  &&ownerid..psprcsrqst new
 SET     runstatus = 7
 WHERE   runstatus != 7
 AND     new.prcstype != 'PSJob'
@@ -471,7 +471,7 @@ AND     rownum <= 1
 
 set echo on serveroutput on buffer 1000000000 
 begin
- dbms_output.put_line('PI='||sysadm.psftapi.get_prcsinstance);
+ dbms_output.put_line('PI='||&&ownerid..psftapi.get_prcsinstance);
 end;
 /
 
