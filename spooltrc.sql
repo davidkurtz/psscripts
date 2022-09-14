@@ -24,7 +24,7 @@ and trace_filename = '&trace_filename'
 set head off pages 0 lines 5000 verify off echo off timi off termout off feedback off long 5000
 spool &trace_filename
 select payload
-from gv$diag_trace_file_contents
+from v$diag_trace_file_contents
 where adr_home = '&adr_home'
 and trace_filename = '&trace_filename'
 order by line_number
