@@ -20,7 +20,7 @@ with x as (
           select '_optimizer_skip_scan_enabled' param_name,'FALSE' parmvalue from dual
 union all select 'parallel_degree_limit' param_name, '4' parmvalue from dual 
 union all select 'parallel_degree_policy' , 'auto' from dual 
-union all select 'parallel_degree_level', '200' from dual 
+--union all select 'parallel_degree_level', '200' from dual --obsolete parameter
 union all select 'parallel_min_time_threshold', '1' from dual
 union all select 'query_rewrite_enabled', 'FORCE' from dual 
 union all select 'ddl_lock_timeout', '30' from dual 
