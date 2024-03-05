@@ -4,7 +4,7 @@ set head off feedback off echo off verify off pages 9999 termout off pause off
 column SPOOL_FILENAME new_value SPOOL_FILENAME
 SELECT 'freespace_'||lower(name)||'_'||TO_CHAR(sysdate,'YYYYmmdd_hh24mi') SPOOL_FILENAME 
 FROM v$database;
-set head on termout on autotrace off pages 40 lines 114 feedback off echo off pause off autotrace off timi off
+set head on termout on autotrace off pages 40 lines 120 feedback off echo off pause off autotrace off timi off
 break on report
 compute sum of summb on report
 compute sum of fragments on report
@@ -18,28 +18,15 @@ column files     	format 9990		heading 'Files'
 column summb     	format 9999990.90	heading 'Total|Free|Mb'
 column maxmb     	format 99990.90		heading 'Largest|Free|Mb'
 column fragments 	format 99990		heading 'Free|Exts'
-column filemb    	format 9999990		heading 'File|Mb'
+column filemb    	format 99999990		heading 'File|Mb'
 column pct       	format 999 		heading '%Free|of|File'
-column maxfilemb    	format 999990.0		heading 'Max File|Mb'
+column maxfilemb    	format 99999990.0	heading 'Max File|Mb'
 column pctmax       	format 999 		heading '%Free|of|Max'
-column segments  	format 999990		heading 'Used|Segs'
+column segments  	format 9999990		heading 'Used|Segs'
 column extents   	format 9999990		heading 'Used|Exts'
-column extentmb  	format 9999990.90	heading 'Used|Mb'
+column extentmb  	format 99999990		heading 'Used|Mb'
 spool &&SPOOL_FILENAME
-select	/*+ORDERED*/
-	f.tablespace_name
-,	f.files
-,	s.summb
-,	s.maxmb
-,	s.fragments
-,	f.filemb
-,	NVL(s.summb,0)/f.filemb*100 pct
-,	f.maxfilemb
-,	(NVL(s.summb,0)+f.maxfilemb-f.filemb)/f.maxfilemb*100 pctmax
-,	o.segments
-,	o.extents
-,	o.extentmb
-from	(
+WITH f as (
 	select	tablespace_name
 	,	count(*) files
 	,	sum(bytes)/1024/1024 filemb
@@ -53,16 +40,18 @@ from	(
 	,	sum(greatest(bytes,maxbytes))/1024/1024 maxfilemb
 	from	dba_temp_files
 	group by tablespace_name
-	) f
-,	(
+), s as (
 	select tablespace_name
 	,	sum(bytes)/1024/1024 summb
 	,	max(bytes)/1024/1024 maxmb
 	,	count(*) fragments
 	from 	dba_free_space
 	group by tablespace_name
-	) s
-,	(
+), t as (
+ select	t.tablespace_name, t.relative_fno, t.file_id, (t.bytes/t.blocks) bpb
+	from	dba_temp_files t 
+	where t.blocks>0
+), o as (
 	select 	tablespace_name
 	,	count(distinct owner||segment_name||segment_type||partition_name) segments
 	,	sum(extents) extents
@@ -74,15 +63,27 @@ from	(
 	select	tablespace
 	,	count(*) segments
 	,	sum(extents) extents
-	,	sum(blocks * x.bpb/1024/1024)
-	from 	v$sort_usage
-	,	(select	bytes/blocks bpb
-		from	dba_temp_files
-		where	rownum = 1) x
+	,	sum(blocks * t.bpb/1024/1024)
+	from 	v$sort_usage u
+ , t
+  where t.tablespace_name = u.tablespace
+  and t.relative_fno = u.segrfno#
+  and t.file_id+1024 = u.segfile#
 	group by tablespace
-	) o
-where	s.tablespace_name(+) = f.tablespace_name
-and	o.tablespace_name(+) = f.tablespace_name
+)
+select	/*+LEADING(F)*/
+	f.tablespace_name,	f.files
+,	s.summb,	s.maxmb,	s.fragments
+,	f.filemb
+,	NVL(s.summb,0)/f.filemb*100 pct
+,	f.maxfilemb
+,	(NVL(s.summb,0)+f.maxfilemb-f.filemb)/f.maxfilemb*100 pctmax
+,	o.segments,	o.extents,	o.extentmb
+from	f
+  LEFT OUTER JOIN s ON s.tablespace_name = f.tablespace_name
+  LEFT OUTER JOIN o ON o.tablespace_name = f.tablespace_name
+where	1=1
+--and f.tablespace_name = 'PTTREE'
 --and	(	f.tablespace_name like 'GP%'
 --	or	f.tablespace_name like '%T%MP%')
 --and	(	f.tablespace_name like 'PBD%'
