@@ -159,7 +159,7 @@ BEGIN
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSNVSSRV%'     , consumer_group => 'NVSRUN_GROUP');
 
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'psae%'         , consumer_group => 'BATCH_GROUP');
-  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSDSTSRV%'     , consumer_group => 'BATCH_GROUP');DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSMSTPRC%'     , consumer_group => 'BATCH_GROUP');
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSAESRV%'      , consumer_group => 'BATCH_GROUP');  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSDSTSRV%'     , consumer_group => 'BATCH_GROUP');DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSMSTPRC%'     , consumer_group => 'BATCH_GROUP');
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSPRCSRV%'     , consumer_group => 'BATCH_GROUP');
 --DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSRUNRMT%'     , consumer_group => 'PSFT_GROUP');
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSRUN@%'       , consumer_group => 'BATCH_GROUP');
