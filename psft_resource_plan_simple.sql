@@ -39,7 +39,7 @@ end;
 --Create a plan to manage these consumer groups
 --------------------------------------------------------------------------------
 BEGIN 
-  DBMS_RESOURCE_MANAGER.CREATE_PLAN('PSFT_PLAN', 'Plan for nVision Reporting with 20 vCPUs');
+  DBMS_RESOURCE_MANAGER.CREATE_PLAN('PSFT_PLAN', 'Sample Plan for PeopleSoft');
 END;
 /
 
@@ -60,7 +60,7 @@ exec DBMS_RESOURCE_MANAGER.CREATE_CONSUMER_GROUP('NVSRUN_GROUP', 'Single nVision
 exec DBMS_RESOURCE_MANAGER.CREATE_CONSUMER_GROUP('LOW_GROUP', 'Low Priority Group.');
 exec DBMS_RESOURCE_MANAGER.CREATE_CONSUMER_GROUP('LOW_LIMITED_GROUP', 'Low Priority Limited Group.');
 --------------------------------------------------------------------------------
---create directives within plan for 20vCPUs
+--create directives within plan
 --------------------------------------------------------------------------------
 BEGIN
   DBMS_RESOURCE_MANAGER.CREATE_PLAN_DIRECTIVE(
