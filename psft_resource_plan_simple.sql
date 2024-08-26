@@ -14,7 +14,7 @@ exec DBMS_RESOURCE_MANAGER.DELETE_CONSUMER_GROUP('PSFT_GROUP');
 exec DBMS_RESOURCE_MANAGER.DELETE_CONSUMER_GROUP('PSFT_HIGHPQ_GROUP');
 --exec DBMS_RESOURCE_MANAGER.DELETE_CONSUMER_GROUP('SUML_GROUP');
 exec DBMS_RESOURCE_MANAGER.DELETE_CONSUMER_GROUP('NVISION_GROUP');
-exec DBMS_RESOURCE_MANAGER.DELETE_CONSUMER_GROUP('BATCH_GROUP');
+exec DBMS_RESOURCE_MANAGER.DELETE_CONSUMER_GROUP('PSBATCH_GROUP');
 exec DBMS_RESOURCE_MANAGER.DELETE_CONSUMER_GROUP('PSQUERY_GROUP');
 exec DBMS_RESOURCE_MANAGER.DELETE_CONSUMER_GROUP('PSQUERY_ONLINE_GROUP');
 exec DBMS_RESOURCE_MANAGER.DELETE_CONSUMER_GROUP('PSQUERY_BATCH_GROUP');
@@ -53,7 +53,7 @@ exec DBMS_RESOURCE_MANAGER.CREATE_CONSUMER_GROUP('PSFT_GROUP', 'General PeopleSo
 --exec DBMS_RESOURCE_MANAGER.CREATE_CONSUMER_GROUP('HIGH_GROUP', 'High Priority Group.');
 --exec DBMS_RESOURCE_MANAGER.CREATE_CONSUMER_GROUP('SUML_GROUP', 'Summary Ledger Processing.');
 exec DBMS_RESOURCE_MANAGER.CREATE_CONSUMER_GROUP('NVISION_GROUP', 'nVision Reports.');
-exec DBMS_RESOURCE_MANAGER.CREATE_CONSUMER_GROUP('BATCH_GROUP', 'General Batch Processing.');
+exec DBMS_RESOURCE_MANAGER.CREATE_CONSUMER_GROUP('PSBATCH_GROUP', 'General Batch Processing.');
 exec DBMS_RESOURCE_MANAGER.CREATE_CONSUMER_GROUP('PSQUERY_ONLINE_GROUP', 'PeopleSoft PS/Query group');
 exec DBMS_RESOURCE_MANAGER.CREATE_CONSUMER_GROUP('PSQUERY_BATCH_GROUP', 'PeopleSoft PS/Query group');
 exec DBMS_RESOURCE_MANAGER.CREATE_CONSUMER_GROUP('NVSRUN_GROUP', 'Single nVision Report group');
@@ -90,7 +90,7 @@ BEGIN
 --);
     
   DBMS_RESOURCE_MANAGER.CREATE_PLAN_DIRECTIVE(
-    'PSFT_PLAN', 'BATCH_GROUP', 'nVision Reports.'
+    'PSFT_PLAN', 'PSBATCH_GROUP', 'nVision Reports.'
     ,mgmt_p4 => 100
 --  ,parallel_degree_limit_p1=>n
 	);
@@ -158,14 +158,16 @@ BEGIN
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSQRYSRV%'     , consumer_group => 'PSQUERY_ONLINE_GROUP');
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSNVSSRV%'     , consumer_group => 'NVSRUN_GROUP');
 
-  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'psae%'         , consumer_group => 'BATCH_GROUP');
-  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSAESRV%'      , consumer_group => 'BATCH_GROUP');  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSDSTSRV%'     , consumer_group => 'BATCH_GROUP');DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSMSTPRC%'     , consumer_group => 'BATCH_GROUP');
-  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSPRCSRV%'     , consumer_group => 'BATCH_GROUP');
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'psae%'         , consumer_group => 'PSBATCH_GROUP');
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSAESRV%'      , consumer_group => 'PSBATCH_GROUP');  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSDSTSRV%'     , consumer_group => 'PSBATCH_GROUP');DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSMSTPRC%'     , consumer_group => 'PSBATCH_GROUP');
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSPRCSRV%'     , consumer_group => 'PSBATCH_GROUP');
+--DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSMSTSRV%'     , consumer_group => 'PSBATCH_GROUP');
+--DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSDSTSRV%'     , consumer_group => 'PSBATCH_GROUP');
 --DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSRUNRMT%'     , consumer_group => 'PSFT_GROUP');
-  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSRUN@%'       , consumer_group => 'BATCH_GROUP');
-  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSSQR%'        , consumer_group => 'BATCH_GROUP');
-  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'pssqr%'        , consumer_group => 'BATCH_GROUP');
-  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'sqr%'          , consumer_group => 'BATCH_GROUP');
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSRUN@%'       , consumer_group => 'PSBATCH_GROUP');
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSSQR%'        , consumer_group => 'PSBATCH_GROUP');
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'pssqr%'        , consumer_group => 'PSBATCH_GROUP');
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'sqr%'          , consumer_group => 'PSBATCH_GROUP');
 
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'SQL Developer%', consumer_group => 'LOW_LIMITED_GROUP');
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'sqlplus%'      , consumer_group => 'LOW_LIMITED_GROUP');
@@ -266,7 +268,7 @@ BEGIN
 --DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SWITCH_CONSUMER_GROUP('SYSADM', 'PSFT_HIGHPQ_GROUP'   , FALSE);
 --DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SWITCH_CONSUMER_GROUP('SYSADM', 'SUML_GROUP'          , FALSE);
   DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SWITCH_CONSUMER_GROUP('SYSADM', 'NVISION_GROUP'       , FALSE);
-  DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SWITCH_CONSUMER_GROUP('SYSADM', 'BATCH_GROUP'         , FALSE);
+  DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SWITCH_CONSUMER_GROUP('SYSADM', 'PSBATCH_GROUP'       , FALSE);
   DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SWITCH_CONSUMER_GROUP('SYSADM', 'PSQUERY_BATCH_GROUP' , FALSE);
   DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SWITCH_CONSUMER_GROUP('SYSADM', 'PSQUERY_ONLINE_GROUP', FALSE);
   DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SWITCH_CONSUMER_GROUP('SYSADM', 'NVSRUN_GROUP'        , FALSE);
