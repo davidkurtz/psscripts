@@ -44,7 +44,7 @@ COMPOUND TRIGGER
         INTO l_prcsname, l_runcntlid
         FROM psprcsrqst
         WHERE prcsinstance = l_process_instance
-        --AND prcsname IN('FSPCCURR','GLPOCONS')
+        AND prcsname IN('FSPCCURR','GLPOCONS')
         AND runstatus = '7';
         
         l_module := regexp_substr(l_module,'PSAE\.GL_JEDIT2\.[0-9]+',1,1)||':'||l_prcsname||':PI='||l_process_instance||':'||l_runcntlid;
