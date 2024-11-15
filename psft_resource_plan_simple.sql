@@ -159,11 +159,11 @@ BEGIN
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSNVSSRV%'     , consumer_group => 'NVSRUN_GROUP');
 
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'psae%'         , consumer_group => 'PSBATCH_GROUP');
-  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSAESRV%'      , consumer_group => 'PSBATCH_GROUP');  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSDSTSRV%'     , consumer_group => 'PSBATCH_GROUP');DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSMSTPRC%'     , consumer_group => 'PSBATCH_GROUP');
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSAESRV%'      , consumer_group => 'PSBATCH_GROUP');
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSDSTSRV%'     , consumer_group => 'PSBATCH_GROUP');
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSMSTPRC%'     , consumer_group => 'PSBATCH_GROUP');
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSPRCSRV%'     , consumer_group => 'PSBATCH_GROUP');
---DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSMSTSRV%'     , consumer_group => 'PSBATCH_GROUP');
---DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSDSTSRV%'     , consumer_group => 'PSBATCH_GROUP');
---DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSRUNRMT%'     , consumer_group => 'PSFT_GROUP');
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSRUNRMT%'     , consumer_group => 'PSFT_GROUP');
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSRUN@%'       , consumer_group => 'PSBATCH_GROUP');
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSSQR%'        , consumer_group => 'PSBATCH_GROUP');
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'pssqr%'        , consumer_group => 'PSBATCH_GROUP');
@@ -192,15 +192,11 @@ BEGIN
 --DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.MODULE_NAME, value => 'GLPOCONS'        , consumer_group => 'PSFT_HIGHPQ_GROUP');
 --DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.MODULE_NAME, value => 'PSAE.GL_JEDIT2.%', consumer_group => 'PSFT_HIGHPQ_GROUP');
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.MODULE_NAME, value => 'RPTBOOK'         , consumer_group => 'NVISION_GROUP');
-  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.MODULE_NAME, value => 'NVSRUN'          , consumer_group => 'NVISION_GROUP');
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.MODULE_NAME, value => 'NVSRUN'          , consumer_group => 'NVSRUN_GROUP');
 --DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.MODULE_NAME, value => 'PSAE.GL_SUML.%'  , consumer_group => 'SUML_GROUP');
 END;
 /
---------------------------------------------------------------------------------
-BEGIN
-  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute      => DBMS_RESOURCE_MANAGER.MODULE_NAME, value => 'SQL Developer', consumer_group => 'LOW_LIMITED_GROUP');
-END;
-/
+
 --------------------------------------------------------------------------------
 BEGIN
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute      => DBMS_RESOURCE_MANAGER.MODULE_NAME, value => 'KTSJ'    , consumer_group => 'SYS_GROUP');
