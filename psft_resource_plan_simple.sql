@@ -155,6 +155,7 @@ END;
 --create automatic mapping rules - programs that go into a group other than the PSFT_GROUP
 --------------------------------------------------------------------------------
 BEGIN
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSAPPSRV%'     , consumer_group => 'PSFT_GROUP');
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSQRYSRV%'     , consumer_group => 'PSQUERY_ONLINE_GROUP');
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSNVSSRV%'     , consumer_group => 'NVSRUN_GROUP');
 
@@ -180,7 +181,7 @@ END;
 --------------------------------------------------------------------------------
 BEGIN
   DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.MODULE_NAME       , value => 'PSAE.PSQUERY.%', consumer_group => 'PSQUERY_BATCH_GROUP');
-  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.MODULE_NAME       , value => 'PSQRYSRV%'     , consumer_group => 'PSQUERY_ONLINE_GROUP');
+  DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.CLIENT_PROGRAM    , value => 'PSQRYSRV%'     , consumer_group => 'PSQUERY_ONLINE_GROUP');
 --DBMS_RESOURCE_MANAGER.set_consumer_group_mapping (attribute => DBMS_RESOURCE_MANAGER.MODULE_NAME       , value => 'psqrysrv%'     , consumer_group => 'PSQUERY_ONLINE_GROUP');
   
   --PIA component that runs queries on-line
