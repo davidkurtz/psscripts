@@ -1,5 +1,6 @@
 REM temptblinstances.sql
 REM (c)David Kurtz, Go-Faster Consultancy Ltd. 2009
+REM https://blog.psftdba.com/2009/01/managing-changes-to-number-of-instances.html
 
 ttitle 'Missing Instances of Temporary Tables'
 SELECT r.recname

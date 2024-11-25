@@ -1,4 +1,5 @@
 REM dup_sql_profiles.sql
+REM https://blog.go-faster.co.uk/2021/08/detecting-clashing-sql-profiles.html
 set long 400 lines 200 pages 999
 break on sig_force skip 1
 column profile# heading 'Prof#' format 9999

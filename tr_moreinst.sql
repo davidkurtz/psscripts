@@ -1,6 +1,6 @@
 REM tr_moreinst.sql
 REM (c) Go-Faster Consultancy 2009
-
+REM https://blog.psftdba.com/2009/02/do-you-need-more-temporary-table.html
 REM When an AE process cannot obtain a private instance of a temporary record it writes a message (108,544) to the 
 REM message log.  This query reports on the records/processes which required additional instances.
 
