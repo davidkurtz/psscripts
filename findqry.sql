@@ -1,4 +1,5 @@
 REM findqry.sql
+REM https://blog.psftdba.com/2024/02/what-psquery-is-that.html
 REM (c)Go-Faster Cosultancy 2024
 
 set echo on serveroutput on pages 999 lines 200 trimspool on

@@ -1,4 +1,5 @@
 REM qry_longprcs.sql
+REM https://blog.psftdba.com/2024/11/peoplesoft-psquery-identify-long.html
 Alter session set nls_date_format = 'HH24:MI:SS dd.mm.yy';
 Set pages 99 lines 145
 column private_query_flag heading 'Private|Query' format a7

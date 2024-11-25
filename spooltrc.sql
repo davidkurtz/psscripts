@@ -1,4 +1,5 @@
 REM spooltrc.sql
+REM https://blog.go-faster.co.uk/2022/09/obtaining-database-trace-files.html
 
 clear screen
 set heading on pages 99 lines 180 verify off echo off trimspool on termout on feedback off

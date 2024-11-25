@@ -1,6 +1,7 @@
 #!/bin/ksh
 #tuxcycle.sh - script to stop and restart all PSAPPSRV processes in a PeopleSoft Application Server domain
 #(c)Go-Faster Consultancy 2002-2008
+#https://blog.psftdba.com/2008/08/how-to-clear-application-server-cache.html
 
 #list value of named environment variable
 envit() (

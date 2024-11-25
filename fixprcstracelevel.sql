@@ -1,4 +1,5 @@
 REM fixprcstracelevel.sql
+REM https://blog.psftdba.com/2022/10/add-flags-to-trace-level-overrides-in.html
 set pages 99 lines 200 serveroutput on
 
 spool fixprcstracelevel append

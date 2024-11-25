@@ -1,4 +1,5 @@
 REM resource_plan_report.sql
+REM https://blog.psftdba.com/2024/03/psftplan-sample-oracle-database.html
 clear screen
 spool resource_plan_report.lst
 --------------------------------------------------------------------------------

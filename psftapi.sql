@@ -1,4 +1,5 @@
 REM psftapi.sql
+REM https://blog.psftdba.com/2009/03/using-oracle-enterprise-manager-grid.html
 REM (c)David Kurtz 2009-21
 REM 26.11.2013 - comment out trigger prcsrqststrng_action from script
 REM 17.03.2016 no longer dropping legacy trigger name

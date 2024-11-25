@@ -1,4 +1,5 @@
 REM depend_hier.sql
+REM https://blog.psftdba.com/2021/08/reporting-view-hierarchies.html
 undefine view_name
 set pages 999 lines 176 long 50000
 break on name skip 1 on owner 

@@ -1,4 +1,5 @@
 REM disabled_profiles_category.sql
+REM https://blog.go-faster.co.uk/2021/07/clashing-sql-profiles-exact-matching.html
 spool disabled_profiles_category app
 set serveroutput on
 BEGIN

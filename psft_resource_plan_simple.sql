@@ -1,4 +1,5 @@
 REM psft_resource_plan_simple.sql
+REM https://blog.psftdba.com/2024/03/psftplan-sample-oracle-database.html
 set trimspool on pages 999 lines 180 termout on serveroutput on
 clear screen 
 spool psft_resource_plan_simple.lst

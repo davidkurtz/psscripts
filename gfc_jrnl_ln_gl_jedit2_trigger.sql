@@ -1,4 +1,5 @@
 REM gfc_jrnl_ln_gl_jedit2_trigger.sql
+REM https://blog.psftdba.com/2024/09/cursor-sharing-3.html
 set pages 99 lines 200 long 5000
 column table_owner format a11
 column base_object_type format a16

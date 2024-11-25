@@ -1,4 +1,5 @@
 REM psmsglogora4031.sql
+REM https://blog.psftdba.com/2023/04/querying-peoplesoft-message-log-with-sql.html
 
 set pages 99 lines 170 serveroutput on long 50000 trimspool on
 column prcstype heading 'Process|Type' format a20
