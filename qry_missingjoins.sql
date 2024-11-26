@@ -1,4 +1,5 @@
 REM qry_missingjoins.sql
+REM https://blog.psftdba.com/2024/11/psquery-cartesian.html
 Clear screen
 Set pages 999 lines 180
 Column oprid format a9

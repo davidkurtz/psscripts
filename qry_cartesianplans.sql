@@ -1,4 +1,5 @@
 REM qry_cartesianplans.sql
+REM https://blog.psftdba.com/2024/11/psquery-cartesian.html
 Clear screen
 Alter session set nls_date_format = 'HH24:MI:SS dd.mm.yy';
 Set pages 999 lines 197 trimspool on
