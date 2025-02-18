@@ -118,6 +118,7 @@ BEGIN
 --  ,parallel_queue_timeout=>900
 --  ,pq_timeout_action=>'RUN'
 	);
+  
   DBMS_RESOURCE_MANAGER.CREATE_PLAN_DIRECTIVE( /*added 2.11.2023*/
     'PSFT_PLAN', 'NVSRUN_GROUP'
     ,mgmt_p6 => 9
