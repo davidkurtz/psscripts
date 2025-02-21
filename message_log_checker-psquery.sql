@@ -1,4 +1,6 @@
 REM message_log_checker-psquery.sql
+REM https://blog.psftdba.com/2025/02/management-of-long-running-psqueries.html
+REM report PS/queries terminated by resource manager consumer group CPU limit or SQL Quarantine
 set serveroutput on trimspool on lines 148 pages 999 wrap on long 50000
 column oprid format a8
 column dbname format a7
