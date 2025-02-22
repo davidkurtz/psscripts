@@ -15,7 +15,7 @@ BEGIN
     FROM   n, ps_message_logparm p
     WHERE  p.process_instance(+) = p_process_instance
     AND    p.message_seq(+)= p_message_seq
-    AND    p.parm_seq = n.n
+    AND    p.parm_seq(+) = n.n
     ORDER BY parm_seq DESC
   ) LOOP
     l_message := replace(l_message,'%'||i.n,i.message_parm);

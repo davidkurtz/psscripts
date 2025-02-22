@@ -138,6 +138,10 @@ FROM x
 WHERE msg like 'Error%ORA-%'
 AND (msg like '%ORA-56955%' or msg like '%ORA-00040%')
 --AND msg like '%Failed SQL stmt:%'
+), q as (
+select q.signature, q.name, q.plan_hash_value, q.cpu_time, q.created, q.last_executed
+, row_Number() over (partition by q.signature order by q.last_executed DESC nulls last) seq
+from dba_sql_quarantine q
 )
 SELECT prcsinstance, dbname, oprid, runcntlid, private_query_flag, qryname, runstatus, errno
 , exec_secs, ash_Secs, ash_cpu_secs, dttm_stamp_sec --, message_seq, message_set_nbr, message_nbr
@@ -146,9 +150,10 @@ SELECT prcsinstance, dbname, oprid, runcntlid, private_query_flag, qryname, runs
 --, y.msg
 --, q.sql_text
 FROM y
-  LEFT OUTER JOIN dba_sql_quarantine q 
-    ON q.signature = y.signature --AND q.plan_hash_value = y.sql_plan_hash_value
+  LEFT OUTER JOIN q 
+    ON q.signature = y.signature AND q.seq = 1 --AND q.plan_hash_value = y.sql_plan_hash_value 
 ORDER BY dttm_stamp_sec DESC --, message_Seq, message_set_nbr, message_nbr
 --FETCH FIRST 10 ROWS ONLY
 /
 spool off
+ttitle off
