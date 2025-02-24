@@ -19,7 +19,7 @@ column message_nbr heading 'Msg|Nbr' format 999
 column begindttm format a28
 column dttm_stamp_Sec format a28
 column msg format a148
-tittle off
+ttitle off
 break on prcsinstance skip 1 on dbname on prcstype on prcsname on oprid on runcntlid on runstatus on begindttm on exec_secs on private_query_flag on qryname
 clear screen
 spool message_log_checker-psquery.lst
