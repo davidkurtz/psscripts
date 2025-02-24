@@ -1,4 +1,5 @@
 REM message_log_checker-psquery2.sql
+REM https://blog.psftdba.com/2025/02/quarantined-sql-plans-for-psqueries.html
 REM match ASH data PSQUERY for resource plan terminated queries to SQL Quarantine directives
 ttitle off
 clear breaks
