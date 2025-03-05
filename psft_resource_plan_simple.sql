@@ -105,6 +105,11 @@ BEGIN
   DBMS_RESOURCE_MANAGER.CREATE_PLAN_DIRECTIVE(
     'PSFT_PLAN', 'PSQUERY_ONLINE_GROUP'
     ,mgmt_p6 => 90
+    ,switch_group => 'CANCEL_SQL'
+    ,switch_time => 1200 /*same as ICQuery service timeout*/
+    ,switch_elapsed_time => 1200 /*same as ICQuery service timeout*/
+    ,switch_estimate => FALSE /*do not timeout on basis of estimated time*/
+    ,switch_for_call => TRUE
 --  ,parallel_degree_limit_p1=>2
 	);
   DBMS_RESOURCE_MANAGER.CREATE_PLAN_DIRECTIVE(
