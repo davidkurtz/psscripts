@@ -2,6 +2,7 @@ REM set_prcs_sess_parm_trg.sql
 REM 6.4.2018 added KEYWORD to permit other ALTER SESSION commands
 REM https://blog.psftdba.com/2018/03/setting-oracle-session-parameters-for.html
 REM https://blog.psftdba.com/2024/09/cursor-sharing-3.html
+REM https://blog.psftdba.com/2025/03/resourcemanagericquerytimelimit.html
 set echo on
 spool set_prcs_sess_parm_trg
 

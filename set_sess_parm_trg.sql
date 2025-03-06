@@ -1,6 +1,6 @@
 REM set_sess_parm_trg.sql
 REM 26.2.2025 created onlogon to SYSADM trigger to detect program name
-REM --IN TEST--
+REM https://blog.psftdba.com/2025/03/resourcemanagericquerytimelimit.html
 set echo on
 spool set_sess_parm_trg
 
