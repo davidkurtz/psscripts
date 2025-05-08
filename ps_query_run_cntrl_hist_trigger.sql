@@ -1,6 +1,6 @@
 REM ps_query_run_cntrl_hist_trigger.sql
 REM 21.4.2025 - trigger and history tables to capture
-REM see also application Designer project QRYRUN_HST.ZIP - 
+REM see also https://blog.psftdba.com/2025/04/loggingpsquerybindvalues.html
 set echo on serveroutput on timi on
 clear screen
 spool ps_query_run_cntrl_hist_trigger
@@ -8,6 +8,7 @@ rollback;
 
 ----------------------------------------------------------------------------------------------------
 -- create psquery history logging tables - recommend also load PeopleSoft Application Designer project
+-- corresponding application Designer project QRYRUN_HST.ZIP - https://github.com/davidkurtz/psscripts/blob/master/QRYRUN_HST.zip
 ----------------------------------------------------------------------------------------------------
 CREATE TABLE PS_QRYRUN_CTL_HST (PRCSINSTANCE INTEGER  DEFAULT 0 NOT NULL,
    OPRID VARCHAR2(30)  DEFAULT ' ' NOT NULL,
