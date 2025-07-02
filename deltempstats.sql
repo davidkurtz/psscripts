@@ -1,5 +1,6 @@
 rem deltempstats.sql
 rem (c)Go-Faster Consultancy Ltd. 2009
+REM https://blog.psftdba.com/2009/04/statistics-management-for-peoplesoft.html
 rem 02.07.2009 Trigger to delete CBO statistics when instance of a temporary table is allocated to process
 rem 26.08.2009 Trigger now fire when table is allocated to new process instance, and only deletes statistics if they exist.
 rem 21.11.2009 added test to lock statistics if not already locked

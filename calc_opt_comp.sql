@@ -1,6 +1,8 @@
 REM calc_opt_comp.sql
 REM (c)Go-Faster Consultancy Ltd. 2014
+REM see https://blog.psftdba.com/2016/02/implementing-index-compression-and.html
 set serveroutput on autotrace off
+clear columns
 SPOOL calc_opt_comp
 
 REM DROP TABLE sysadm.gfc_index_stats PURGE;
@@ -83,16 +85,22 @@ BEGIN
 END;
 /
 
+set lines 160 pages 99
+column name format a18
+column partition_name format a30
+column height heading 'Height' format 9999
+
 column table_name format a18
 column index_name format a18
-column partition_name format a30
-column name format a18
 column freq format 999
+column pct_used heading '%|Used' format 9999
+column rows_per_key heading 'Rows/Key' format 999.999
+column blks_gets_per_access heading 'Blk Gets/Access' format 999.999
 column parts heading 'Num|Parts' format 9999
 column prefix_length heading 'Index|Prefix|Length'
-column weighted_average_saving format 99.9 heading 'Weighted|Average|Saving %'
-column opt_cmpr_count heading 'Opt Comp|Prefix|Length'
-column opt_cmpr_pctsave format 99.9 heading 'Saving|%'
+column weighted_average_saving format 999.9 heading 'Weighted|Average|Saving %'
+column opt_cmpr_count heading 'Opt Comp|Prefix|Length' format 9999
+column opt_cmpr_pctsave format 999.9 heading 'Saving|%'
 column blocks heading 'Blocks' format 999,999,999
 column est_comp_blocks heading 'Est.|Comp|Blocks' format 999,999,999
 column tot_blocks heading 'Total|Blocks' format 999,999,999
@@ -107,8 +115,9 @@ compute sum of est_comp_blocks on report
 compute sum of parts on name 
 compute sum of parts on table_name 
 compute sum of parts on report
+
 ttitle 'Summary Report'
-set lines 120 pages 99
+set lines 150 pages 99
 rem name skip 1
 SELECT i.table_name, s.name, s.opt_cmpr_count
 , count(*) freq
@@ -168,7 +177,7 @@ and	   y.ranking = 1
 order by table_name, index_name, partition_name
 /
 
-set lines 130
+set lines 150
 ttitle 'Detail Report'
 break on table_name on name skip 1
 SELECT i.table_name, s.name, s.partition_name, s.opt_cmpr_count
