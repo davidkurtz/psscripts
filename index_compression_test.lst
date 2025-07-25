@@ -1,0 +1,152 @@
+
+Error starting at line : 6 in command -
+create table gfc_index_compression_stats
+(table_name varchar2(128)
+,index_name varchar2(128)
+,num_rows number
+,last_analyzed date
+,prefix_length number 
+,blevel number 
+,leaf_blocks number 
+,avg_leaf_blocks_per_key number 
+,avg_data_blocks_per_key number 
+,clustering_factor number 
+,constraint gfc_index_compression_stats_pk primary key (table_name, index_name, prefix_length)
+)
+Error report -
+ORA-00955: name is already used by an existing object
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+Elapsed: 00:00:00.321
+ALTER INDEX PSAPSTREENODE REBUILD COMPRESS 8
+ALTER INDEX PSBPSTREENODE REBUILD COMPRESS 8
+ALTER INDEX PSAPSTREENODE REBUILD COMPRESS 7
+ALTER INDEX PSBPSTREENODE REBUILD COMPRESS 7
+ALTER INDEX PS_PSTREENODE REBUILD COMPRESS 7
+ALTER INDEX PSAPSTREENODE REBUILD COMPRESS 6
+ALTER INDEX PSBPSTREENODE REBUILD COMPRESS 6
+ALTER INDEX PSHPSTREENODE REBUILD COMPRESS 6
+ALTER INDEX PSIPSTREENODE REBUILD COMPRESS 6
+ALTER INDEX PS_PSTREENODE REBUILD COMPRESS 6
+ALTER INDEX PSAPSTREENODE REBUILD COMPRESS 5
+ALTER INDEX PSBPSTREENODE REBUILD COMPRESS 5
+ALTER INDEX PSGPSTREENODE REBUILD COMPRESS 5
+ALTER INDEX PSHPSTREENODE REBUILD COMPRESS 5
+ALTER INDEX PSIPSTREENODE REBUILD COMPRESS 5
+ALTER INDEX PS_PSTREENODE REBUILD COMPRESS 5
+ALTER INDEX PSAPSTREENODE REBUILD COMPRESS 4
+ALTER INDEX PSBPSTREENODE REBUILD COMPRESS 4
+ALTER INDEX PSDPSTREENODE REBUILD COMPRESS 4
+ALTER INDEX PSGPSTREENODE REBUILD COMPRESS 4
+ALTER INDEX PSHPSTREENODE REBUILD COMPRESS 4
+ALTER INDEX PSIPSTREENODE REBUILD COMPRESS 4
+ALTER INDEX PS_PSTREENODE REBUILD COMPRESS 4
+ALTER INDEX PSAPSTREENODE REBUILD COMPRESS 3
+ALTER INDEX PSBPSTREENODE REBUILD COMPRESS 3
+ALTER INDEX PSDPSTREENODE REBUILD COMPRESS 3
+ALTER INDEX PSGPSTREENODE REBUILD COMPRESS 3
+ALTER INDEX PSHPSTREENODE REBUILD COMPRESS 3
+ALTER INDEX PSIPSTREENODE REBUILD COMPRESS 3
+ALTER INDEX PS_PSTREENODE REBUILD COMPRESS 3
+ALTER INDEX PSAPSTREENODE REBUILD COMPRESS 2
+ALTER INDEX PSBPSTREENODE REBUILD COMPRESS 2
+ALTER INDEX PSDPSTREENODE REBUILD COMPRESS 2
+ALTER INDEX PSFPSTREENODE REBUILD COMPRESS 2
+ALTER INDEX PSGPSTREENODE REBUILD COMPRESS 2
+ALTER INDEX PSHPSTREENODE REBUILD COMPRESS 2
+ALTER INDEX PSIPSTREENODE REBUILD COMPRESS 2
+ALTER INDEX PS_PSTREENODE REBUILD COMPRESS 2
+ALTER INDEX PSAPSTREENODE REBUILD COMPRESS 1
+ALTER INDEX PSBPSTREENODE REBUILD COMPRESS 1
+ALTER INDEX PSDPSTREENODE REBUILD COMPRESS 1
+ALTER INDEX PSFPSTREENODE REBUILD COMPRESS 1
+ALTER INDEX PSGPSTREENODE REBUILD COMPRESS 1
+ALTER INDEX PSHPSTREENODE REBUILD COMPRESS 1
+ALTER INDEX PSIPSTREENODE REBUILD COMPRESS 1
+ALTER INDEX PS_PSTREENODE REBUILD COMPRESS 1
+ALTER INDEX PSAPSTREENODE REBUILD NOCOMPRESS
+ALTER INDEX PSBPSTREENODE REBUILD NOCOMPRESS
+ALTER INDEX PSDPSTREENODE REBUILD NOCOMPRESS
+ALTER INDEX PSFPSTREENODE REBUILD NOCOMPRESS
+ALTER INDEX PSGPSTREENODE REBUILD NOCOMPRESS
+ALTER INDEX PSHPSTREENODE REBUILD NOCOMPRESS
+ALTER INDEX PSIPSTREENODE REBUILD NOCOMPRESS
+ALTER INDEX PS_PSTREENODE REBUILD NOCOMPRESS
+
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:01:05.257
+
+TABLE_NAME         INDEX_NAME           NUM_ROWS LAST_ANALYZED       PREFIX_LENGTH     BLEVEL LEAF_BLOCKS AVG_LEAF_BLOCKS_PER_KEY AVG_DATA_BLOCKS_PER_KEY CLUSTERING_FACTOR
+------------------ ------------------ ---------- ------------------- ------------- ---------- ----------- ----------------------- ----------------------- -----------------
+PSTREENODE         PSAPSTREENODE          168178 04/07/2025 12:49:34             8          2        1877                       1                       1             57506
+PSTREENODE         PSBPSTREENODE          168178 04/07/2025 12:49:36             8          2        1040                       1                       1            129122
+PSTREENODE         PSAPSTREENODE          168178 04/07/2025 12:49:37             7          2        1877                       1                       1             57506
+PSTREENODE         PSBPSTREENODE          168178 04/07/2025 12:49:38             7          2        1062                       1                       1            129122
+PSTREENODE         PSAPSTREENODE          168178 04/07/2025 12:49:40             6          2        1877                       1                       1             57506
+PSTREENODE         PSBPSTREENODE          168178 04/07/2025 12:49:41             6          2        1096                       1                       1            129122
+PSTREENODE         PSHPSTREENODE          168178 04/07/2025 12:49:42             6          2        1666                       1                       1            155071
+PSTREENODE         PSIPSTREENODE          168178 04/07/2025 12:49:44             6          2        1686                       1                       1             57506
+PSTREENODE         PS_PSTREENODE          168178 04/07/2025 12:49:45             6          2        1690                       1                       1             80038
+PSTREENODE         PSAPSTREENODE          168178 04/07/2025 12:49:46             5          2        1875                       1                       1             57506
+PSTREENODE         PSBPSTREENODE          168178 04/07/2025 12:49:48             5          2        1166                       1                       1            129122
+
+TABLE_NAME         INDEX_NAME           NUM_ROWS LAST_ANALYZED       PREFIX_LENGTH     BLEVEL LEAF_BLOCKS AVG_LEAF_BLOCKS_PER_KEY AVG_DATA_BLOCKS_PER_KEY CLUSTERING_FACTOR
+------------------ ------------------ ---------- ------------------- ------------- ---------- ----------- ----------------------- ----------------------- -----------------
+PSTREENODE         PSGPSTREENODE          168178 04/07/2025 12:49:49             5          2        1805                       1                       1             95316
+PSTREENODE         PSHPSTREENODE          168178 04/07/2025 12:49:50             5          2        1664                       1                       1            155071
+PSTREENODE         PSIPSTREENODE          168178 04/07/2025 12:49:52             5          2        1686                       1                       1             57506
+PSTREENODE         PS_PSTREENODE          168178 04/07/2025 12:49:52             5          2        1690                       1                       1             80038
+PSTREENODE         PSAPSTREENODE          168178 04/07/2025 12:49:54             4          2         999                       1                       1             57506
+PSTREENODE         PSBPSTREENODE          168178 04/07/2025 12:49:55             4          2        1316                       1                       1            129122
+PSTREENODE         PSDPSTREENODE          168178 04/07/2025 12:49:56             4          2         604                       1                       1             64220
+PSTREENODE         PSGPSTREENODE          168178 04/07/2025 12:49:57             4          2        1802                       1                       1             95316
+PSTREENODE         PSHPSTREENODE          168178 04/07/2025 12:49:58             4          2        1664                       1                       1            155071
+PSTREENODE         PSIPSTREENODE          168178 04/07/2025 12:50:00             4          2        1684                       1                       1             57506
+PSTREENODE         PS_PSTREENODE          168178 04/07/2025 12:50:00             4          2         812                       1                       1             80038
+
+TABLE_NAME         INDEX_NAME           NUM_ROWS LAST_ANALYZED       PREFIX_LENGTH     BLEVEL LEAF_BLOCKS AVG_LEAF_BLOCKS_PER_KEY AVG_DATA_BLOCKS_PER_KEY CLUSTERING_FACTOR
+------------------ ------------------ ---------- ------------------- ------------- ---------- ----------- ----------------------- ----------------------- -----------------
+PSTREENODE         PSAPSTREENODE          168178 04/07/2025 12:50:02             3          2        1046                       1                       1             57506
+PSTREENODE         PSBPSTREENODE          168178 04/07/2025 12:50:04             3          2        1065                       1                       1            129122
+PSTREENODE         PSDPSTREENODE          168178 04/07/2025 12:50:05             3          2         416                       1                       1             64220
+PSTREENODE         PSGPSTREENODE          168178 04/07/2025 12:50:06             3          2        1125                       1                       1             95316
+PSTREENODE         PSHPSTREENODE          168178 04/07/2025 12:50:08             3          2        1662                       1                       1            155071
+PSTREENODE         PSIPSTREENODE          168178 04/07/2025 12:50:09             3          2         899                       1                       1             57506
+PSTREENODE         PS_PSTREENODE          168178 04/07/2025 12:50:10             3          2         998                       1                       1             80038
+PSTREENODE         PSAPSTREENODE          168178 04/07/2025 12:50:12             2          2        1232                       1                       1             57506
+PSTREENODE         PSBPSTREENODE          168178 04/07/2025 12:50:14             2          2        1112                       1                       1            129122
+PSTREENODE         PSDPSTREENODE          168178 04/07/2025 12:50:15             2          2         602                       1                       1             64220
+PSTREENODE         PSFPSTREENODE          168178 04/07/2025 12:50:15             2          2         263                       1                      10              8747
+
+TABLE_NAME         INDEX_NAME           NUM_ROWS LAST_ANALYZED       PREFIX_LENGTH     BLEVEL LEAF_BLOCKS AVG_LEAF_BLOCKS_PER_KEY AVG_DATA_BLOCKS_PER_KEY CLUSTERING_FACTOR
+------------------ ------------------ ---------- ------------------- ------------- ---------- ----------- ----------------------- ----------------------- -----------------
+PSTREENODE         PSGPSTREENODE          168178 04/07/2025 12:50:16             2          2        1066                       1                       1             95316
+PSTREENODE         PSHPSTREENODE          168178 04/07/2025 12:50:18             2          2        1143                       1                       1            155071
+PSTREENODE         PSIPSTREENODE          168178 04/07/2025 12:50:19             2          2        1075                       1                       1             57506
+PSTREENODE         PS_PSTREENODE          168178 04/07/2025 12:50:20             2          2        1367                       1                       1             80038
+PSTREENODE         PSAPSTREENODE          168178 04/07/2025 12:50:21             1          2        1600                       1                       1             57506
+PSTREENODE         PSBPSTREENODE          168178 04/07/2025 12:50:22             1          2        1481                       1                       1            129122
+PSTREENODE         PSDPSTREENODE          168178 04/07/2025 12:50:23             1          2         971                       1                       1             64220
+PSTREENODE         PSFPSTREENODE          168178 04/07/2025 12:50:24             1          2         449                       1                      10              8747
+PSTREENODE         PSGPSTREENODE          168178 04/07/2025 12:50:25             1          2        1356                       1                       1             95316
+PSTREENODE         PSHPSTREENODE          168178 04/07/2025 12:50:27             1          2        1268                       1                       1            155071
+PSTREENODE         PSIPSTREENODE          168178 04/07/2025 12:50:28             1          2        1424                       1                       1             57506
+
+TABLE_NAME         INDEX_NAME           NUM_ROWS LAST_ANALYZED       PREFIX_LENGTH     BLEVEL LEAF_BLOCKS AVG_LEAF_BLOCKS_PER_KEY AVG_DATA_BLOCKS_PER_KEY CLUSTERING_FACTOR
+------------------ ------------------ ---------- ------------------- ------------- ---------- ----------- ----------------------- ----------------------- -----------------
+PSTREENODE         PS_PSTREENODE          168178 04/07/2025 12:50:28             1          2        1414                       1                       1             80038
+PSTREENODE         PSAPSTREENODE          168178 04/07/2025 12:50:30             0          2        1734                       1                       1             57506
+PSTREENODE         PSBPSTREENODE          168178 04/07/2025 12:50:31             0          2        1614                       1                       1            129122
+PSTREENODE         PSDPSTREENODE          168178 04/07/2025 12:50:32             0          2        1105                       1                       1             64220
+PSTREENODE         PSFPSTREENODE          168178 04/07/2025 12:50:33             0          2         816                       1                      10              8747
+PSTREENODE         PSGPSTREENODE          168178 04/07/2025 12:50:34             0          2        1663                       1                       1             95316
+PSTREENODE         PSHPSTREENODE          168178 04/07/2025 12:50:36             0          2        1523                       1                       1            155071
+PSTREENODE         PSIPSTREENODE          168178 04/07/2025 12:50:37             0          2        1551                       1                       1             57506
+PSTREENODE         PS_PSTREENODE          168178 04/07/2025 12:50:38             0          2        1548                       1                       1             80038
+
+53 rows selected. 
+
+Elapsed: 00:00:00.340

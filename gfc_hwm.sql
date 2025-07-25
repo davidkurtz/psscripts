@@ -1,5 +1,5 @@
 REM gfc_hwm.sql
-rem (c) Go-Faster Consultancy Ltd. www.go-faster.co.uk (c)2021
+rem (c)Go-Faster Consultancy Ltd. www.go-faster.co.uk (c)2021
 set serveroutput on echo on termout on timi on
 clear screen
 spool gfc_hwm
@@ -78,7 +78,7 @@ set serveroutput on
 exec sysadm.gfc_hwm('%CUR%WRK%T%');
 exec sysadm.gfc_hwm('%TAO');
 exec sysadm.gfc_hwm('%TMP');
-exec sysadm.gfc_hwm;
+exec sysadm.gfc_hwm(p_testmode=>TRUE);
 
 spool off
 
